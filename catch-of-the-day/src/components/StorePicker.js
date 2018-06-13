@@ -14,7 +14,6 @@ class StorePicker extends React.Component {
   };
   render() {
     return (
-<<<<<<< HEAD
       <Fragment>
         <form className="store-selector" onSubmit={this.goToStore}>
           <h2>Pleas Enter a Store</h2>
@@ -28,11 +27,6 @@ class StorePicker extends React.Component {
           <button type="submit">Visit Store →</button>
         </form>
       </Fragment>
-=======
-      <form className="store-selector">
-        <h2>Please Enter a Store Name</h2>
-      </form>
->>>>>>> 203773c255d9a406c99e37e031de34958edc918d
     )
   }
 }
