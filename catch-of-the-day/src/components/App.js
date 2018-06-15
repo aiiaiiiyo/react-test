@@ -41,6 +41,25 @@ class App extends React.Component {
     //this.setState({fishes: fishes});
     this.setState({ fishes });
   };
+
+  updatedFish = (key, updatedFish) => {
+    // take copy of current fish
+    const fishes = {...this.state.fishes};
+    // update that state
+    fishes[key] = updatedFish;
+    //set to state
+    this.setState({fishes});
+  }
+
+  deleteFish = (key) => {
+    //take copy of state
+    const fishes = {...this.state.fishes};
+    //update the state (remove)
+    fishes[key] = null;
+    // update state
+    this.setState({fishes});
+  }
+
   loadSampleFishes = () => {
     //alert('loading sample');
     this.setState({ fishes: sampleFishes });
@@ -55,13 +74,10 @@ class App extends React.Component {
     this.setState({ order });
   }
 
-  updatedFish = (key, updatedFish) => {
-    // take copy of current fish
-    const fishes = {...this.state.fishes};
-    // update that state
-    fishes[key] = updatedFish;
-    //set to state
-    this.setState({fishes});
+  deleteOrder = (key) => {
+    const order = {...this.state.order};
+    delete order[key];
+    this.setState({order});
   }
 
   render() {
@@ -81,12 +97,14 @@ class App extends React.Component {
           </ul>
         </div>
         {/* everythign in state as prop spread <Order {...this.state}/> */}
-        <Order fishes={this.state.fishes} order={this.state.order}/>
+        <Order fishes={this.state.fishes} order={this.state.order} deleteOrder={this.deleteOrder}/>
         <Inventory
+          storeId={this.props.match.params.storeId}
           addFish={this.addFish}
+          updatedFish={this.updatedFish}
+          deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
-          updatedFish={this.updatedFish}
         />
       </div>
     )
